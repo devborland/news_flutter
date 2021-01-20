@@ -3,11 +3,12 @@ import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'package:path/path.dart';
 import '../models/item_model.dart';
+import 'package:dartz/dartz.dart';
 
 class NewsDbProvider {
-  late Database db;
+  Database db;
 
-  init() async {
+  void init() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     final path = join(documentsDirectory.path, 'items.db');
     db = await openDatabase(
@@ -36,7 +37,8 @@ class NewsDbProvider {
     );
   }
 
-  fetchItem(int id) async {
+  // ignore: missing_return
+  Future<ItemModel> fetchItem(int id) async {
     final List<Map<String, dynamic>> maps = await db.query(
       'Items',
       columns: [
@@ -61,10 +63,10 @@ class NewsDbProvider {
     if (maps.length > 0) {
       return ItemModel.fromDb(maps.first);
     }
-    return null;
+    // return null;
   }
 
-  addItem(ItemModel item) {
+  Future<int> addItem(ItemModel item) {
     return db.insert('Items', item.toMapForDb());
   }
 }
