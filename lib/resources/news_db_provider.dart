@@ -3,10 +3,13 @@ import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'package:path/path.dart';
 import '../models/item_model.dart';
-import 'package:dartz/dartz.dart';
+import 'repository.dart';
 
-class NewsDbProvider {
+class NewsDbProvider implements Source, Cache {
   Database db;
+  NewsDbProvider() {
+    init();
+  }
 
   void init() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
@@ -69,4 +72,12 @@ class NewsDbProvider {
   Future<int> addItem(ItemModel item) {
     return db.insert('Items', item.toMapForDb());
   }
+
+  @override
+  Future<List<int>> fetchTopIds() {
+    // TODO: implement fetchTopIds
+    return null;
+  }
 }
+
+final newsDbProvider = NewsDbProvider();

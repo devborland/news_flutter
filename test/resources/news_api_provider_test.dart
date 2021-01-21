@@ -16,7 +16,7 @@ void main() {
         },
       );
 
-      final ids = await newsApi.fetchTopIDs();
+      final ids = await newsApi.fetchTopIds();
 
       // act //expectation
       expect(ids, [1, 2, 3, 4]);
