@@ -1,6 +1,7 @@
 import 'news_db_provider.dart';
 import 'news_api_provider.dart';
 import '../models/item_model.dart';
+import 'dart:async';
 
 class Repository {
   // NewsDbProvider dbProvider = NewsDbProvider();
@@ -33,6 +34,9 @@ class Repository {
     }
 
     for (var cache in caches) {
+      // if (cache != (sources) as Cache) {
+      //   cache.addItem(item);
+      // }
       cache.addItem(item);
     }
     return item;
