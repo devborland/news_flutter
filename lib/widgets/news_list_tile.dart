@@ -22,18 +22,17 @@ class NewsListTile extends StatelessWidget {
           future: snapshot.data[itemId],
           builder: (context, AsyncSnapshot<ItemModel> itemSnapshot) {
             if (!itemSnapshot.hasData) {
-              // print(itemSnapshot.data.title);
               return LoadingContainer();
             }
 
-            return buildTile(itemSnapshot.data);
+            return buildTile(context, itemSnapshot.data);
           },
         );
       },
     );
   }
 
-  Widget buildTile(ItemModel item) {
+  Widget buildTile(BuildContext context, ItemModel item) {
     return Column(
       children: [
         ListTile(
@@ -45,9 +44,12 @@ class NewsListTile extends StatelessWidget {
               Text(item.descendants.toString()),
             ],
           ),
+          onTap: () {
+            Navigator.pushNamed(context, '/${item.id}');
+          },
         ),
         Divider(
-          color: Colors.amber,
+          color: Colors.blue,
           height: 8.0,
         )
       ],

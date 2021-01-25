@@ -19,15 +19,15 @@ class ItemModel {
       : id = parsedJson['id'],
         deleted = parsedJson['deleted'] ?? false,
         type = parsedJson['type'] ?? 'kuku',
-        by = parsedJson['by'] ?? 'kuku',
+        by = parsedJson['by'] ?? 'Deleted',
         time = parsedJson['time'],
-        text = parsedJson['text'] ?? 'kuku',
+        text = parsedJson['text'] ?? 'Deleted',
         dead = parsedJson['dead'] ?? false,
         parent = parsedJson['parent'],
         kids = parsedJson['kids'] ?? [],
         url = parsedJson['url'] ?? 'url:kuku',
         score = parsedJson['score'] ?? 0,
-        title = parsedJson['title'] ?? 'kuku',
+        title = parsedJson['title'] ?? 'title:kuku',
         descendants = parsedJson['descendants'] ?? 0;
 
   ItemModel.fromDb(Map<String, dynamic> parsedJson)
